@@ -1,115 +1,48 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bio Link - Avatar</title>
+<!-- ===== CODE 1 - HEADER ===== -->
+<div class="profile">
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <img class="avatar"
+        src="https://sf-static.upanhlaylink.com/img/image_20260717fbbed04ced040a0b38ab6755fa63d94f.jpg"
+        alt="Avatar">
 
-body {
-    background: #111;
-    color: white;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-}
+    <h1>Gấu ModZ</h1>
 
-.bio-container {
-    width: 100%;
-    max-width: 400px; /* Định dạng khung chuẩn mobile */
-    text-align: center;
-    padding: 20px;
-}
-
-/* Khung viền và hiệu ứng của Avatar */
-.avatar-box {
-    margin-bottom: 20px;
-}
-
-.avatar-box img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #ff9800; /* Viền màu cam nổi bật */
-    box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
-    transition: transform 0.3s ease;
-}
-
-.avatar-box img:hover {
-    transform: scale(1.05); /* Phóng to nhẹ khi di chuột vào avatar */
-}
-
-/* Phần chữ giới thiệu */
-.profile-name {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-.profile-desc {
-    font-size: 15px;
-    color: #bbb;
-    margin-bottom: 30px;
-}
-
-/* Danh sách nút liên kết */
-.links-group {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.bio-btn {
-    display: block;
-    text-decoration: none;
-    background: #ff9800;
-    color: white;
-    padding: 14px;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.bio-btn:hover {
-    background: #e08600;
-    transform: translateY(-2px); /* Nút nảy lên nhẹ khi di chuột */
-}
-</style>
-</head>
-
-<body>
-
-<div class="bio-container">
-
-    <!-- Phần Avatar -->
-    <div class="avatar-box">
-        <img src="https://via.placeholder.com/150" alt="Avatar">
-    </div>
-
-    <!-- Thông tin cá nhân -->
-    <div class="profile-name">Tên Của Bạn</div>
-    <div class="profile-desc">Chào mừng bạn đến với trang liên kết của tôi! 👋</div>
-
-    <!-- Các nút Website -->
-    <div class="links-group">
-        <a href="https://link1.com" target="_blank" class="bio-btn">Website Chính Thức</a>
-        <a href="https://link2.com" target="_blank" class="bio-btn">Facebook Cá Nhân</a>
-        <a href="https://link3.com" target="_blank" class="bio-btn">Kênh YouTube</a>
-    </div>
+    <p>SHARE MOD SKIN VIP PRO</p>
 
 </div>
 
-</body>
-</html>
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#111;
+    color:#fff;
+}
+
+.profile{
+    text-align:center;
+    padding:35px 20px;
+}
+
+.avatar{
+    width:130px;
+    height:130px;
+    border-radius:15px; /* Avatar hình vuông bo góc */
+    object-fit:cover;
+    border:4px solid #00ff88;
+    box-shadow:0 0 20px #00ff88;
+}
+
+.profile h1{
+    margin:15px 0 8px;
+    font-size:30px;
+    color:#00ff88;
+}
+
+.profile p{
+    margin:0;
+    color:#ddd;
+    font-size:16px;
+    letter-spacing:1px;
+}
+</style>
