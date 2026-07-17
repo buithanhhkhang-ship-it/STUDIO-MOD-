@@ -46,3 +46,76 @@ body{
     letter-spacing:1px;
 }
 </style>
+
+<!-- ===== CODE 2 - DANH SÁCH MOD ===== -->
+
+<div class="mod-grid">
+
+    <!-- Thư mục 1 -->
+    <div class="mod-card">
+        <img src="LINK_ANH_1.png" alt="Mod 1">
+
+        <div class="btn-group">
+            <a href="LINK_FFTH_1" class="btn normal">🟢 FF TH</a>
+            <a href="LINK_FFMAX_1" class="btn max">🔴 FF MAX</a>
+        </div>
+    </div>
+
+    <!-- Thư mục 2 -->
+    <div class="mod-card">
+        <img src="LINK_ANH_2.png" alt="Mod 2">
+
+        <div class="btn-group">
+            <a href="LINK_FFTH_2" class="btn normal">🟢 FF TH</a>
+            <a href="LINK_FFMAX_2" class="btn max">🔴 FF MAX</a>
+        </div>
+    </div>
+
+</div>
+
+<style>
+.mod-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    padding:15px;
+}
+
+.mod-card{
+    background:#1b1b1b;
+    border-radius:12px;
+    overflow:hidden;
+}
+
+.mod-card img{
+    width:100%;
+    aspect-ratio:16/9;
+    object-fit:cover;
+    display:block;
+}
+
+.btn-group{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    padding:10px;
+}
+
+.btn{
+    text-decoration:none;
+    text-align:center;
+    padding:8px;
+    border-radius:8px;
+    color:#fff;
+    font-weight:bold;
+    font-size:13px;
+}
+
+.normal{
+    background:#00c853;
+}
+
+.max{
+    background:#e53935;
+}
+</style>
