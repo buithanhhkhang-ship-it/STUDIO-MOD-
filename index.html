@@ -3,104 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STUDIO MOD</title>
+<title>Thư mục Link</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+body {
+    background: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
-body{
-background:#111;
-color:#fff;
-display:flex;
-justify-content:center;
-padding:30px;
+.folder-box {
+    text-align: center;
 }
 
-.container{
-width:100%;
-max-width:420px;
-text-align:center;
+.folder {
+    cursor: pointer;
+    user-select: none; /* Tránh việc người dùng vô tình bôi đen ảnh khi click nhanh */
 }
 
-.avatar{
-width:130px;
-height:130px;
-border-radius:50%;
-object-fit:cover;
-border:3px solid #fff;
-margin-bottom:15px;
+.folder img {
+    width: 150px;
+    transition: transform 0.3s ease;
 }
 
-h1{
-font-size:30px;
-margin-bottom:8px;
+.folder img:hover {
+    transform: scale(1.08);
 }
 
-p{
-color:#bbb;
-margin-bottom:25px;
+.desc {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
-.btn{
-display:block;
-text-decoration:none;
-background:#222;
-color:#fff;
-padding:16px;
-margin:12px 0;
-border-radius:14px;
-font-size:18px;
-transition:.2s;
-border:1px solid #333;
+/* Tối ưu hiệu ứng mượt mà bằng max-height và opacity */
+.buttons {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+    margin-top: 0;
 }
 
-.btn:hover{
-background:#333;
-transform:scale(1.02);
+/* Khi class 'open' được thêm vào thông qua JS */
+.buttons.open {
+    max-index: 500px; /* Đủ chỗ cho các nút hiển thị */
+    max-height: 300px; 
+    opacity: 1;
+    margin-top: 20px;
+}
+
+.buttons a {
+    display: block;
+    text-decoration: none;
+    background: #ff9800;
+    color: white;
+    padding: 12px;
+    margin: 10px auto;
+    width: 200px;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.buttons a:hover {
+    background: #e08600; /* Hiệu ứng đổi màu nhẹ khi rê chuột vào nút */
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="folder-box">
 
-<img src="https://sf-static.upanhlaylink.com/img/image_202607037e4fe890cffc42f6e021859d22305118.jpg" class="avatar">
+    <div class="folder" onclick="toggleFolder()">
+        <img src="https://sf-static.upanhlaylink.com/img/image_20260717b13c7f2df9e6171f883e04997caa2d54.jpg" alt="Folder">
+    </div>
 
-<h1>STUDIO MOD</h1>
+    <div class="desc">
+        📂 MOD SKIN FREE FIRE
+    </div>
 
-<p>Nhóm Share MOD & Shop Bán Máy ảo</p>
-
-<a class="btn" href="https://link4m.net/0V9xk" target="_blank">
-📲 APP MOD SKIN TOOL V9
-</a>
-  
-<a class="btn" href="https://zalo.me/g/vcyz9cj9awn8divdby2h" target="_blank">
-📱 NHÓM ZALO
-</a>
-
-<a class="btn" href="https://t.me/studiomodall" target="_blank">
-✈️ NHÓM TELEGRAM
-</a>
-
-<a class="btn" href="https://youtube.com/@studiomodall?si=nuo8_kb5WE9xyLka" target="_blank">
-▶️ YOUTUBE
-</a>
-
-<a class="btn" href="https://www.tiktok.com/@thanhkhang1372009?_r=1&_t=ZS-97iFXunuF7K" target="_blank">
-🎵 TIKTOK
-</a>
-
-<a class="btn" href="https://shop.honghac86.com/" target="_blank">
-🛒 SHOP BÁN MÁY ẢO
-</a>
+    <div class="buttons" id="menu">
+        <a href="https://link1.com" target="_blank">Link 1</a>
+        <a href="https://link2.com" target="_blank">Link 2</a>
+    </div>
 
 </div>
+
+<script>
+function toggleFolder() {
+    let menu = document.getElementById("menu");
+    // Sử dụng classList.toggle giúp mã nguồn ngắn gọn và dễ quản lý hiệu ứng CSS hơn
+    menu.classList.toggle("open");
+}
+</script>
 
 </body>
 </html>
