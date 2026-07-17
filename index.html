@@ -3,9 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thư mục Link</title>
+<title>Bio Link - Avatar</title>
 
 <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background: #111;
     color: white;
@@ -13,96 +19,97 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    min-height: 100vh;
+    padding: 20px;
 }
 
-.folder-box {
+.bio-container {
+    width: 100%;
+    max-width: 400px; /* Định dạng khung chuẩn mobile */
     text-align: center;
+    padding: 20px;
 }
 
-.folder {
-    cursor: pointer;
-    user-select: none; /* Tránh việc người dùng vô tình bôi đen ảnh khi click nhanh */
+/* Khung viền và hiệu ứng của Avatar */
+.avatar-box {
+    margin-bottom: 20px;
 }
 
-.folder img {
-    width: 150px;
+.avatar-box img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ff9800; /* Viền màu cam nổi bật */
+    box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
     transition: transform 0.3s ease;
 }
 
-.folder img:hover {
-    transform: scale(1.08);
+.avatar-box img:hover {
+    transform: scale(1.05); /* Phóng to nhẹ khi di chuột vào avatar */
 }
 
-.desc {
-    margin-top: 10px;
-    font-size: 18px;
+/* Phần chữ giới thiệu */
+.profile-name {
+    font-size: 22px;
     font-weight: bold;
+    margin-bottom: 8px;
 }
 
-/* Tối ưu hiệu ứng mượt mà bằng max-height và opacity */
-.buttons {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, opacity 0.3s ease;
-    margin-top: 0;
+.profile-desc {
+    font-size: 15px;
+    color: #bbb;
+    margin-bottom: 30px;
 }
 
-/* Khi class 'open' được thêm vào thông qua JS */
-.buttons.open {
-    max-index: 500px; /* Đủ chỗ cho các nút hiển thị */
-    max-height: 300px; 
-    opacity: 1;
-    margin-top: 20px;
+/* Danh sách nút liên kết */
+.links-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-.buttons a {
+.bio-btn {
     display: block;
     text-decoration: none;
     background: #ff9800;
     color: white;
-    padding: 12px;
-    margin: 10px auto;
-    width: 200px;
-    border-radius: 10px;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 16px;
     font-weight: bold;
-    transition: background 0.2s;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.buttons a:hover {
-    background: #e08600; /* Hiệu ứng đổi màu nhẹ khi rê chuột vào nút */
+.bio-btn:hover {
+    background: #e08600;
+    transform: translateY(-2px); /* Nút nảy lên nhẹ khi di chuột */
 }
 </style>
 </head>
 
 <body>
 
-<div class="folder-box">
+<div class="bio-container">
 
-    <div class="folder" onclick="toggleFolder()">
-        <img src="https://sf-static.upanhlaylink.com/img/image_20260717b13c7f2df9e6171f883e04997caa2d54.jpg" alt="Folder">
+    <!-- Phần Avatar -->
+    <div class="avatar-box">
+        <img src="https://via.placeholder.com/150" alt="Avatar">
     </div>
 
-    <div class="desc">
-        📂 MOD SKIN FREE FIRE
-    </div>
+    <!-- Thông tin cá nhân -->
+    <div class="profile-name">Tên Của Bạn</div>
+    <div class="profile-desc">Chào mừng bạn đến với trang liên kết của tôi! 👋</div>
 
-    <div class="buttons" id="menu">
-        <a href="https://link1.com" target="_blank">Link 1</a>
-        <a href="https://link2.com" target="_blank">Link 2</a>
+    <!-- Các nút Website -->
+    <div class="links-group">
+        <a href="https://link1.com" target="_blank" class="bio-btn">Website Chính Thức</a>
+        <a href="https://link2.com" target="_blank" class="bio-btn">Facebook Cá Nhân</a>
+        <a href="https://link3.com" target="_blank" class="bio-btn">Kênh YouTube</a>
     </div>
 
 </div>
-
-<script>
-function toggleFolder() {
-    let menu = document.getElementById("menu");
-    // Sử dụng classList.toggle giúp mã nguồn ngắn gọn và dễ quản lý hiệu ứng CSS hơn
-    menu.classList.toggle("open");
-}
-</script>
 
 </body>
 </html>
