@@ -6,363 +6,454 @@
 <title>STUDIO MOD IOS VIP</title>
 
 <style>
-#popup {
-    position: fixed;
-    top:0;
-    left:0;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+html{scroll-behavior:smooth;}
+
+body{
+    min-height:100vh;
+    color:#fff;
+    background:#050509;
+    overflow-x:hidden;
+}
+
+/* ===== BACKGROUND ===== */
+#bg-canvas{
+    position:fixed;
+    inset:0;
     width:100%;
     height:100%;
-    background: rgba(0,0,0,0.6);
-    display:flex;
+    z-index:-3;
+}
+
+.bg-overlay{
+    position:fixed;
+    inset:0;
+    background:
+        linear-gradient(135deg,rgba(0,229,255,.025),transparent 40%),
+        linear-gradient(315deg,rgba(168,85,247,.035),transparent 45%);
+    z-index:-2;
+    pointer-events:none;
+}
+
+/* ===== POPUP ===== */
+#popup{
+    position:fixed;
+    inset:0;
+    display:none;
     justify-content:center;
     align-items:center;
+    padding:20px;
+    background:rgba(0,0,0,.78);
+    backdrop-filter:blur(12px);
     z-index:99999;
 }
 
-.popup-box {
-    width: 340px;
-    background:#f3f4f6;
-    border-radius:20px;
+.popup-box{
+    width:min(390px,100%);
+    background:linear-gradient(145deg,rgba(20,22,35,.98),rgba(8,10,18,.98));
+    border:1px solid rgba(0,229,255,.35);
+    border-radius:24px;
     overflow:hidden;
-    animation: fadeIn 0.3s ease;
+    box-shadow:0 0 45px rgba(0,229,255,.15),0 25px 80px rgba(0,0,0,.7);
+    animation:popupIn .35s ease;
 }
 
-.popup-header {
-    padding:15px;
-    text-align:center;
-    font-weight:bold;
-    color:#1e3a8a;
+@keyframes popupIn{
+    from{opacity:0;transform:translateY(25px) scale(.94)}
+    to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.popup-header{
     position:relative;
-    border-bottom:1px solid #ddd;
+    padding:18px 48px 16px 18px;
+    text-align:center;
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.popup-header h2 {
-    margin:0;
+.popup-header h2{
+    color:#00e5ff;
+    font-size:20px;
+    letter-spacing:1px;
 }
 
-.close {
+.close{
     position:absolute;
-    right:15px;
-    top:10px;
+    right:16px;
+    top:12px;
+    width:34px;
+    height:34px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    color:#aaa;
     font-size:22px;
     cursor:pointer;
-    color:#999;
+    transition:.25s;
 }
 
-.popup-content {
-    padding:20px;
+.close:hover{
+    color:#fff;
+    background:rgba(255,255,255,.1);
+}
+
+.popup-content{
+    padding:22px;
     text-align:center;
-    color:#333;
-    font-size:15px;
+    color:#d8d8e2;
+    font-size:14px;
+    line-height:1.7;
 }
 
-.popup-content .link {
-    color:#2563eb;
+.popup-content .join{
+    display:inline-block;
+    margin-top:14px;
+    padding:10px 20px;
+    border-radius:30px;
+    color:#001014;
+    background:linear-gradient(90deg,#00e5ff,#67f8ff);
     font-weight:bold;
     text-decoration:none;
+    box-shadow:0 0 20px rgba(0,229,255,.25);
 }
 
-.popup-content .join {
-    color:#2563eb;
-    font-weight:bold;
-    font-size:18px;
-    text-decoration:none;
-}
-
-.popup-footer {
+.popup-footer{
     display:flex;
     gap:10px;
-    padding:15px;
+    padding:16px;
+    border-top:1px solid rgba(255,255,255,.07);
 }
 
-.btn-gray {
+.btn-gray,.btn-dark{
     flex:1;
-    background:#e5e7eb;
-    border:none;
-    padding:12px;
-    border-radius:12px;
-    font-weight:bold;
-}
-
-.btn-dark {
-    flex:1;
-    background:#0f172a;
-    color:#fff;
-    border:none;
+    border:0;
     padding:12px;
     border-radius:12px;
     font-weight:bold;
     cursor:pointer;
+    transition:.25s;
 }
 
-@keyframes fadeIn {
-    from {opacity:0; transform:scale(0.8);}
-    to {opacity:1; transform:scale(1);}
+.btn-gray{
+    background:rgba(255,255,255,.09);
+    color:#ddd;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+.btn-dark{
+    background:linear-gradient(90deg,#00bcd4,#7c3aed);
+    color:#fff;
 }
 
-#bg-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #050505;
-    z-index: -2;
+.btn-gray:hover,.btn-dark:hover{transform:translateY(-2px)}
+
+/* ===== HEADER ===== */
+.header{
+    position:relative;
+    padding:28px 20px 24px;
+    text-align:center;
+    background:linear-gradient(180deg,rgba(10,12,25,.96),rgba(10,12,25,.72));
+    border-bottom:1px solid rgba(0,229,255,.14);
+    box-shadow:0 15px 50px rgba(0,0,0,.35);
 }
 
-.bg-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(0,0,0,0.2), rgba(0,0,0,0.9));
-    z-index: -1;
+.header::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-1px;
+    width:160px;
+    height:2px;
+    transform:translateX(-50%);
+    background:linear-gradient(90deg,transparent,#00e5ff,transparent);
+    box-shadow:0 0 18px #00e5ff;
 }
 
-.bg-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.55);
-    z-index: -1;
+.header h1{
+    color:#fff;
+    font-size:clamp(25px,7vw,38px);
+    font-weight:900;
+    letter-spacing:1px;
+    text-shadow:0 0 18px rgba(0,229,255,.35);
 }
 
-body {
-    color: #fff;
+.header p{
+    margin-top:8px;
+    color:#8f96a8;
+    font-size:13px;
+    letter-spacing:1px;
 }
 
-/* HEADER */
-.header {
-    background: linear-gradient(90deg, #1e3a8a, #312e81);
-    padding: 10px;
-    box-shadow: 0 0 20px #000;
-    position: relative;
+/* ===== AVATAR ===== */
+.avatar-upload{
+    position:absolute;
+    top:18px;
+    right:18px;
 }
 
-.header h1 {
-    color: #facc15;
-    font-size: 32px;
-    font-weight: bold;
+.avatar-btn{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    overflow:hidden;
+    border:2px solid rgba(0,229,255,.8);
+    box-shadow:0 0 20px rgba(0,229,255,.22);
 }
 
-/* chữ nhỏ dưới header */
-.header p {
-    margin: 0px 0 0;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.6);
-    letter-spacing: 0.5px;
-    transition: 0.3s;
-}
-
-.header p:hover {
-    color: rgba(255, 255, 255, 0.9);
-}
-
-/* ===== NÚT TRÒN GÓC PHẢI (THÊM MỚI) ===== */
-.avatar-upload {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-}
-
-.avatar-btn {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    overflow: hidden;
-    cursor: pointer;
-    border: 2px solid #fff;
-    box-shadow: 0 0 12px rgba(0,0,0,0.6);
-    transition: 0.3s;
-}
-
-.avatar-btn:hover {
-    transform: scale(1.1);
-}
-
-.avatar-btn img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* CARDS */
-.cards {
-    display: flex;
-    gap: 15px;
-    padding: 10px;
-    flex-wrap: wrap;
-}
-
-.card {
-    flex: 1 1 calc(33.33% - 15px);
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 20px;
-    text-align: center;
-    transition: 0.3s;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-}
-
-.card:hover {
-    transform: translateY(-5px) scale(1.02);
-}
-
-.icon {
-    width: 120px;
-    height: 200px;
-    border-radius: 20px;
-    margin: auto;
-    overflow: hidden;
-}
-
-.icon img {
-    width: 100%;
-}
-
-.card h3 {
-    margin-top: 10px;
-    font-size: 18px;
-}
-
-.btn {
-    margin-top: 12px;
-    padding: 12px;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 15px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-
-    color: #111;
-
-    /* nền trắng bóng */
-    background: linear-gradient(145deg, #ffffff, #e5e7eb);
-    
-    /* hiệu ứng kính */
-    backdrop-filter: blur(5px);
-
-    /* đổ bóng nhẹ */
-    box-shadow: 
-        0 4px 15px rgba(255,255,255,0.3),
-        inset 0 2px 5px rgba(255,255,255,0.8);
-
-    transition: 0.3s;
-}
-
-.btn::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -75%;
-    width: 50%;
-    height: 100%;
-    background: rgba(255,255,255,0.6);
-    transform: skewX(-25deg);
-}
-
-.btn:hover::after {
-    left: 120%;
-    transition: 0.6s;
-}
-
-.btn:hover {
-    transform: scale(1.07);
-    box-shadow: 
-        0 8px 25px rgba(255,255,255,0.6),
-        inset 0 2px 8px rgba(255,255,255,1);
-}
-
-.btn:active {
-    transform: scale(0.95);
-}
-
-
-/* LOADING */
-#loading {
-    position: fixed;
-    top:0;
-    left:0;
+.avatar-btn img{
     width:100%;
     height:100%;
-    background:#000000cc;
+    object-fit:cover;
+    display:block;
+}
+
+/* ===== IOS GUIDE BUTTON ===== */
+.ios-guide{
+    display:flex;
+    justify-content:center;
+    padding:18px 14px 5px;
+}
+
+.ios-guide-btn{
+    position:relative;
+    width:min(430px,100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:14px 20px;
+    border-radius:16px;
+    color:#fff;
+    background:linear-gradient(135deg,rgba(0,229,255,.16),rgba(124,58,237,.18));
+    border:1px solid rgba(0,229,255,.35);
+    text-decoration:none;
+    font-weight:800;
+    letter-spacing:.5px;
+    box-shadow:0 8px 30px rgba(0,0,0,.25),0 0 20px rgba(0,229,255,.08);
+    overflow:hidden;
+    transition:.3s;
+}
+
+.ios-guide-btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:60%;
+    height:100%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.22),transparent);
+    transform:skewX(-20deg);
+    transition:.6s;
+}
+
+.ios-guide-btn:hover::before{left:130%}
+.ios-guide-btn:hover{
+    transform:translateY(-3px);
+    border-color:#00e5ff;
+    box-shadow:0 12px 35px rgba(0,0,0,.35),0 0 25px rgba(0,229,255,.18);
+}
+
+/* ===== CARDS ===== */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:16px;
+    padding:18px 14px 25px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.card{
+    position:relative;
+    min-width:0;
+    padding:12px;
+    border-radius:20px;
+    text-align:center;
+    background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 12px 30px rgba(0,0,0,.3);
+    backdrop-filter:blur(12px);
+    overflow:hidden;
+    transition:.3s ease;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,rgba(0,229,255,.07),transparent 45%,rgba(124,58,237,.07));
+    pointer-events:none;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:rgba(0,229,255,.35);
+    box-shadow:0 18px 40px rgba(0,0,0,.45),0 0 25px rgba(0,229,255,.08);
+}
+
+.icon{
+    position:relative;
+    width:100%;
+    aspect-ratio:1/1.25;
+    border-radius:14px;
+    overflow:hidden;
+    background:#0d0f18;
+}
+
+.icon img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:.4s;
+}
+
+.card:hover .icon img{transform:scale(1.04)}
+
+.card h3{
+    position:relative;
+    margin-top:11px;
+    min-height:20px;
+    color:#f4f7ff;
+    font-size:15px;
+    line-height:1.3;
+}
+
+.btn{
+    position:relative;
+    margin-top:11px;
+    padding:10px 8px;
+    border-radius:12px;
+    color:#001014;
+    background:linear-gradient(90deg,#00d9f5,#8b5cf6);
+    font-weight:900;
+    font-size:13px;
+    cursor:pointer;
+    overflow:hidden;
+    transition:.25s;
+}
+
+.btn::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-80%;
+    width:50%;
+    height:100%;
+    background:rgba(255,255,255,.45);
+    transform:skewX(-25deg);
+    transition:.55s;
+}
+
+.btn:hover::after{left:130%}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 20px rgba(0,229,255,.2)}
+.btn:active{transform:scale(.96)}
+
+/* ===== LOADING ===== */
+#loading{
+    position:fixed;
+    inset:0;
     display:none;
     justify-content:center;
     align-items:center;
     flex-direction:column;
+    background:rgba(0,0,0,.78);
+    backdrop-filter:blur(8px);
     color:#fff;
     z-index:9999;
 }
 
-.loader {
-    width:60px;
-    height:60px;
-    border:6px solid rgba(255,255,255,0.2);
-    border-top:6px solid #fff;
+.loader{
+    width:56px;
+    height:56px;
+    border:4px solid rgba(255,255,255,.12);
+    border-top-color:#00e5ff;
+    border-right-color:#8b5cf6;
     border-radius:50%;
-    animation:spin 1s linear infinite;
-    box-shadow: 0 0 15px #fff;
+    animation:spin .8s linear infinite;
+    box-shadow:0 0 25px rgba(0,229,255,.2);
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===== FOOTER ===== */
+.footer{
+    padding:24px 15px;
+    text-align:center;
+    color:#777e91;
+    border-top:1px solid rgba(255,255,255,.07);
 }
 
-/* SUPPORT */
-.support {
-    padding: 20px;
+.credit{
+    padding:0 15px 30px;
+    text-align:center;
+    color:#00d9f5;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:.5px;
 }
 
-.support h2 {
-    color: #60a5fa;
-    font-size: 30px;
-    margin-bottom: 20px;
+/* ===== ADMIN INFO ===== */
+.admin-info{
+    padding:10px 15px;
+    text-align:center;
 }
 
-.support p {
-    font-size: 20px;
-    color: #ccc;
-    margin: 15px 0;
+.admin-info .link{
+    color:#8f96a8;
+    font-size:14px;
 }
 
-.support .link {
-    color: #38bdf8;
-    font-weight: bold;
+.admin-info .link a{
+    color:#00e5ff;
+    text-decoration:none;
+    font-weight:bold;
 }
 
-/* FOOTER */
-.footer {
-    text-align: center;
-    padding: 20px;
-    color: #aaa;
-    border-top: 1px solid #333;
+.admin-info .link a:hover{
+    text-shadow:0 0 15px rgba(0,229,255,.5);
 }
 
-.credit {
-    text-align: center;
-    color: #38bdf8;
-    font-weight: bold;
-    padding-bottom: 30px;
+/* ===== RESPONSIVE ===== */
+@media(max-width:520px){
+    .header{padding:24px 72px 20px 15px}
+    .header h1{font-size:24px}
+    .header p{font-size:11px}
+    .avatar-upload{top:15px;right:12px}
+    .avatar-btn{width:48px;height:48px}
+    .cards{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:8px;
+        padding:14px 8px 20px;
+    }
+    .card{
+        padding:7px;
+        border-radius:13px;
+    }
+    .icon{border-radius:9px}
+    .card h3{
+        margin-top:7px;
+        font-size:10px;
+    }
+    .btn{
+        margin-top:7px;
+        padding:8px 3px;
+        border-radius:9px;
+        font-size:9px;
+    }
+    .ios-guide{padding:14px 10px 2px}
+    .ios-guide-btn{padding:12px 10px;font-size:12px}
 }
 </style>
 </head>
 
 <body>
 
+<!-- ===== POPUP ===== -->
 <div id="popup">
   <div class="popup-box">
     
@@ -374,281 +465,250 @@ body {
     <div class="popup-content">
       <p>
        WEBSITE: MOD SKIN FF IOS VIP <br>
-        CHUYÊN CUNG CẤP MOD SKIN FREE FIRE MIỄN PHÍ - VÀ AN TOÀN<br> 
-<p> <br>
+        CHUYÊN CUNG CẤP MOD SKIN FREE FIRE MIỄN PHÍ VÀ AN TOÀN<br> 
+        <br>
         ĐẶT MOD SKIN LIÊN HỆ TELEGRAM 👇  
       </p>
         
-      <!-- JOIN CHANNEL -->
       <p>
         <a href="https://t.me/studiomodall" class="join">JOIN CHANNEL</a>
       </p>
     </div>
 
     <div class="popup-footer">
-      <button class="btn-gray">ẨN 1 GIỜ</button>
+      <button class="btn-gray" onclick="closePopup()">ẨN 1 GIỜ</button>
       <button class="btn-dark" onclick="closePopup()">ĐÓNG</button>
     </div>
 
   </div>
 </div>
 
-  <canvas id="bg-canvas"></canvas>
+<!-- ===== BACKGROUND ===== -->
+<canvas id="bg-canvas"></canvas>
 <div class="bg-overlay"></div>
 
+<!-- ===== HEADER ===== -->
 <div class="header">
     <h1>𝙈𝙊𝘿 𝙎𝙆𝙄𝙉 𝙁𝙁 𝙄𝙊𝙎</h1>
     <p>ᴛᴇʟᴇɢʀᴀᴍ @ThanhKhang1372009</p>
 
-    <!-- 🔥 NÚT TRÒN THÊM MỚI -->
     <div class="avatar-upload">
-        <div class="avatar-btn" onclick="openApp()">
-            <img src="https://sf-static.upanhlaylink.com/img/image_20260722121dab72bff1621aa9a9a5ac4d7907ea.jpg">
+        <div class="avatar-btn">
+            <img src="https://sf-static.upanhlaylink.com/img/image_20260722121dab72bff1621aa9a9a5ac4d7907ea.jpg" alt="Avatar">
         </div>
     </div>
 </div>
 
+<!-- ===== IOS GUIDE ===== -->
+<div class="ios-guide">
+    <a class="ios-guide-btn"
+       href="https://drive.google.com/file/d/1QPXYb3jNvIgFZOmBOkLB31Lw-nMg67cJ/view?usp=drivesdk"
+       target="_blank"
+       rel="noopener noreferrer">
+        📱 HƯỚNG DẪN MOD IOS
+    </a>
+</div>
+
+<!-- ===== CARDS ===== -->
 <div class="cards">
-
-<script>
-// HIỆN POPUP KHI VÀO WEB
-window.addEventListener("load", () => {
-    setTimeout(() => {
-        document.getElementById("popup").style.display = "flex";
-    }, 800);
-});
-
-// ĐÓNG POPUP
-function closePopup() {
-    document.getElementById("popup").style.display = "none";
-}
-// ===== TEXT TO SPEECH (GIỮ NGUYÊN) =====
-function speak(text) {
-    const msg = new SpeechSynthesisUtterance();
-    msg.text = text;
-    msg.lang = "vi-VN";
-    msg.rate = 1;
-    msg.pitch = 1;
-    speechSynthesis.speak(msg);
-}
-
-window.onload = function() {
-    speak("");
-};
-
-// ===== DOWNLOAD (GIỮ NGUYÊN) =====
-function download(url) {
-    document.getElementById("loading").style.display = "flex";
-
-    speak("");
-
-    setTimeout(() => { window.location.href = url; }, 300);
-    setTimeout(() => { window.location.replace(url); }, 800);
-}
-
-// ===== MỞ APP / LINK (THÊM MỚI) =====
-function openApp() {
-    const url = "https://drive.google.com/file/d/1QPXYb3jNvIgFZOmBOkLB31Lw-nMg67cJ/view?usp=drivesdk";
-    window.location.href = url;
-}
-</script>
-
-<!-- CARD 1 -->
+    <!-- CARD 1 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/free/2026-04-11-c638fd8b-aa7a-40c2-a90a-ad9e8fb4b0cf.jpg"></div>
-    <h3>IGNIS 1</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/free/2026-04-11-c638fd8b-aa7a-40c2-a90a-ad9e8fb4b0cf.jpg" alt="ALOK Skin 1"></div>
+    <h3>ALOK</h3>
     <div class="btn" onclick="download('https://link4m.org/uyP0i')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 2 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/free/2026-04-11-c0445b54-f5ee-4dc7-bba3-8cbc61f58370.jpg"></div>
-    <h3>IGNIS 2</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/free/2026-04-11-c0445b54-f5ee-4dc7-bba3-8cbc61f58370.jpg" alt="ALOK Skin 2"></div>
+    <h3>ALOK</h3>
     <div class="btn" onclick="download('https://link4m.net/DIiUG9XN')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 3 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/free/2026-04-11-d09a55d3-e753-4f52-ba71-f4db5aed6d76.jpg"></div>
-    <h3>IGNIS 3</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/free/2026-04-11-d09a55d3-e753-4f52-ba71-f4db5aed6d76.jpg" alt="ALOK Skin 3"></div>
+    <h3>ALOK</h3>
     <div class="btn" onclick="download('https://link4m.net/uRjeTcT3')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 4 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/free/2026-04-11-990b812a-13bb-4843-be2f-0f27f6d5e35f.jpg"></div>
-    <h3>ALOK 4</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/free/2026-04-11-990b812a-13bb-4843-be2f-0f27f6d5e35f.jpg" alt="ALOK Skin 4"></div>
+    <h3>ALOK</h3>
     <div class="btn" onclick="download('https://link4m.net/G3kfn')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 5 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-925f8abe-8a91-4066-8ec9-197f17f621bf.jpg"></div>
-    <h3>IGNIS 5</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-925f8abe-8a91-4066-8ec9-197f17f621bf.jpg" alt="ALOK Skin 5"></div>
+    <h3>ALOK</h3>
     <div class="btn" onclick="download('https://link4m.org/eDsX0aw')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 6 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/free/2026-04-11-02669507-7df2-4cb7-957f-db8087725385.jpg"></div>
-        <h3>IGNIS 6</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/free/2026-04-11-02669507-7df2-4cb7-957f-db8087725385.jpg" alt="ALOK Skin 6"></div>
+        <h3>ALOK</h3>
     <div class="btn" onclick="download('https://link4m.net/RkUL30')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 7 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/free/2026-04-11-0f165fc3-6aa4-4650-af11-43207faf0b7a.jpg"></div>
-    <h3>IGNIS 7</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/free/2026-04-11-0f165fc3-6aa4-4650-af11-43207faf0b7a.jpg" alt="ALOK Skin 7"></div>
+    <h3>ALOK</h3>
     <div class="btn" onclick="download('https://link4m.org/tDfz9')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 8 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-ce7c330f-dc98-428b-b5e5-dc82308ae101.jpg"></div>
-    <h3>ALOK 8</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-ce7c330f-dc98-428b-b5e5-dc82308ae101.jpg" alt="ALOK Skin 8"></div>
+    <h3>ALOK</h3>
     <div class="btn" onclick="download('https://link4m.org/NKoBLa0U')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 9 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-399753e4-3e5c-4a1d-96eb-363c7b8f03f9.jpg"></div>
-    <h3>IGNIS 9</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-399753e4-3e5c-4a1d-96eb-363c7b8f03f9.jpg" alt="ALOK Skin 9"></div>
+    <h3>ALOK</h3>
     <div class="btn" onclick="download('https://link4m.net/kHLCW')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 10 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-cc39d0a0-4bb9-4951-b820-a77ca1953464.jpg"></div>
-    <h3>ALOK 10</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-cc39d0a0-4bb9-4951-b820-a77ca1953464.jpg" alt="ALOK Skin 10"></div>
+    <h3>ALOK</h3>
     <div class="btn" onclick="download('https://link4m.org/rbbv5')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 11 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-be2fb759-1374-465e-b773-2e07c02357a2.png"></div>
-    <h3>ALOK 11</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-be2fb759-1374-465e-b773-2e07c02357a2.png" alt="ALOK Skin 11"></div>
+    <h3>ALOK</h3>
     <div class="btn" onclick="download('https://link4m.net/7Xx9moU')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 12 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-5468fb63-5c83-41ad-91a8-40e541ec8670.jpg"></div>
-    <h3>ALOK 12</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-5468fb63-5c83-41ad-91a8-40e541ec8670.jpg" alt="ALOK Skin 12"></div>
+    <h3>ALOK</h3>
     <div class="btn" onclick="download('https://link4m.org/78LSq')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 13 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-6a02f500-80fa-4dd5-bcb4-22ca0ce89b26.png"></div>
-    <h3>ALOK 13</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-6a02f500-80fa-4dd5-bcb4-22ca0ce89b26.png" alt="ALOK Skin 13"></div>
+    <h3>ALOK</h3>
     <div class="btn" onclick="download('https://link4m.org/awuG43')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 14 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-5b78197c-0e81-4bcc-b631-af5df280e1e7.png"></div>
-    <h3>ALOK 14</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-5b78197c-0e81-4bcc-b631-af5df280e1e7.png" alt="ALOK Skin 14"></div>
+    <h3>ALOK</h3>
     <div class="btn" onclick="download('https://link4m.org/V5RU7j')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 15 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-2accbd5b-35d6-4777-bf0c-669918c866b8.png"></div>
-    <h3>IGNIS 15</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-2accbd5b-35d6-4777-bf0c-669918c866b8.png" alt="IGNIS Skin 1"></div>
+    <h3>IGNIS</h3>
     <div class="btn" onclick="download('https://link4m.org/8w3sR')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 16 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-1f0640fd-f9d9-4c76-99e5-d8ff4f5d2140.png"></div>
-    <h3>IGNIS 16</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-1f0640fd-f9d9-4c76-99e5-d8ff4f5d2140.png" alt="IGNIS Skin 2"></div>
+    <h3>IGNIS</h3>
     <div class="btn" onclick="download('https://link4m.org/eJAWuFt')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 17 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-12-de349047-3185-4ac5-bd0d-0fde8b29a78a.png"></div>
-    <h3>IGNIS 17</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-12-de349047-3185-4ac5-bd0d-0fde8b29a78a.png" alt="IGNIS Skin 3"></div>
+    <h3>IGNIS</h3>
     <div class="btn" onclick="download('https://link4m.org/D7ZJsY')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 18 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-12-59872603-e543-4d14-a8ef-092d7f0192c4.png"></div>
-    <h3>ALOK 18</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-12-59872603-e543-4d14-a8ef-092d7f0192c4.png" alt="ALOK Skin 15"></div>
+    <h3>ALOK</h3>
     <div class="btn" onclick="download('https://link4m.net/o3DmDl')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 19 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-12-04e313e3-1b2d-4ec8-9e94-af90b23ce6f2.png"></div>
-    <h3>ALOK 19</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-12-04e313e3-1b2d-4ec8-9e94-af90b23ce6f2.png" alt="ALOK Skin 16"></div>
+    <h3>ALOK</h3>
     <div class="btn" onclick="download('https://link4m.net/ygiaUDg')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 20 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-12-c89ef076-b19b-4af0-a872-b28bb0327b68.png"></div>
-    <h3>ALOK 20</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-12-c89ef076-b19b-4af0-a872-b28bb0327b68.png" alt="ALOK Skin 17"></div>
+    <h3>ALOK</h3>
     <div class="btn" onclick="download('https://link4m.org/6sxcrV4')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 21 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-12-99983034-8019-46bf-a26c-1472071c5ffd.jpg"></div>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-12-99983034-8019-46bf-a26c-1472071c5ffd.jpg" alt="AWM Phong Xà"></div>
     <h3>AWM [ Phong Xà ]</h3>
     <div class="btn" onclick="download('https://link4m.org/nsrMHtS')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 22 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-12-72ca27ee-64e9-4d4b-a12b-3a8d5f735b6d.jpg"></div>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-12-72ca27ee-64e9-4d4b-a12b-3a8d5f735b6d.jpg" alt="M1887 Phong Xà"></div>
     <h3>M1887 [ Phong Xà ]</h3>
     <div class="btn" onclick="download('https://link4m.net/c7DOHm')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 23 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-13-a3382c10-6638-4be3-8508-2e2633464a8a.png"></div>
-    <h3>ALOK 21</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-13-a3382c10-6638-4be3-8508-2e2633464a8a.png" alt="ALOK Skin 18"></div>
+    <h3>ALOK</h3>
     <div class="btn" onclick="download('https://link4m.net/qzSyo')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 24 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-13-55fc836b-811b-4a9d-8c33-71a87f961764.png"></div>
-    <h3>SANTINO 22</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-13-55fc836b-811b-4a9d-8c33-71a87f961764.png" alt="SANTINO Skin"></div>
+    <h3>SANTINO</h3>
     <div class="btn" onclick="download('https://link4m.net/QnZGynzM')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 25 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-13-b251b3c9-6489-48a2-9309-16bb328efef1.png"></div>
-    <h3>ALOK + IGNIS 23</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-13-b251b3c9-6489-48a2-9309-16bb328efef1.png" alt="ALOK + IGNIS 1"></div>
+    <h3>ALOK + IGNIS</h3>
     <div class="btn" onclick="download('https://link4m.net/zbRv8b1B')">TẢI NGAY</div>
 </div>
 
 <!-- CARD 26 -->
 <div class="card">
-    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-13-86f8306b-b719-4c66-a970-55382ab4e483.png"></div>
-    <h3>ALOK + IGNIS 24</h3>
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-13-86f8306b-b719-4c66-a970-55382ab4e483.png" alt="ALOK + IGNIS 2"></div>
+    <h3>ALOK + IGNIS</h3>
     <div class="btn" onclick="download('https://link4m.net/vgD0T')">TẢI NGAY</div>
 </div>
 
-</div>
-<!-- LOADING -->
-<div id="loading">
-    <div class="loader"></div>
-    <p></p>
-</div>
-    
+</div><!-- End .cards -->
+
+<!-- ===== ADMIN INFO ===== -->
+<div class="admin-info">
     <p class="link">
-        ADMIN : 
-@ThanhKhang1372009 <br>
-       
+        ADMIN: <a href="https://t.me/ThanhKhang1372009" target="_blank">@ThanhKhang1372009</a>
     </p>
 </div>
 
+<!-- ===== LOADING ===== -->
+<div id="loading">
+    <div class="loader"></div>
+    <p>Đang tải...</p>
+</div>
+
+<!-- ===== FOOTER ===== -->
 <div class="footer">
     <b>© 2026 STUDIO MOD VIP</b>
 </div>
@@ -657,84 +717,113 @@ function openApp() {
     WEBSITE MAKE BY : STUDIO MOD VIP
 </div>
 
+<!-- ===== JAVASCRIPT ===== -->
 <script>
+// ===== BACKGROUND PARTICLES =====
 const canvas = document.getElementById("bg-canvas");
 const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+let particles = [];
+let w = 0;
+let h = 0;
 
-let snowflakes = [];
-
-// tạo tuyết
-for (let i = 0; i < 100; i++) {
-    snowflakes.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 3 + 1,
-        speed: Math.random() * 2 + 1
-    });
+function resizeCanvas(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
 }
 
-function drawSnow() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+function createParticles(){
+    particles = [];
+    const count = Math.min(90, Math.max(35, Math.floor((w * h) / 18000)));
 
-    ctx.fillStyle = "white";
-    ctx.beginPath();
-
-    for (let i = 0; i < snowflakes.length; i++) {
-        let f = snowflakes[i];
-        ctx.moveTo(f.x, f.y);
-        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
-    }
-
-    ctx.fill();
-    moveSnow();
-}
-
-function moveSnow() {
-    for (let i = 0; i < snowflakes.length; i++) {
-        let f = snowflakes[i];
-
-        // rơi thẳng xuống
-        f.y += f.speed;
-
-        // nếu rơi hết màn thì reset lại trên
-        if (f.y > canvas.height) {
-            snowflakes[i] = {
-                x: Math.random() * canvas.width,
-                y: 0,
-                r: f.r,
-                speed: f.speed
-            };
-        }
+    for(let i = 0; i < count; i++){
+        particles.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            r: Math.random() * 1.8 + .5,
+            vx: (Math.random() - .5) * .25,
+            vy: Math.random() * .35 + .08,
+            a: Math.random() * .7 + .15
+        });
     }
 }
 
-function animateSnow() {
-    drawSnow();
-    requestAnimationFrame(animateSnow);
+function drawParticles(){
+    ctx.clearRect(0,0,w,h);
+
+    for(const p of particles){
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if(p.y > h + 5) p.y = -5;
+        if(p.x < -5) p.x = w + 5;
+        if(p.x > w + 5) p.x = -5;
+
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle = `rgba(0,229,255,${p.a})`;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = "#00e5ff";
+        ctx.fill();
+    }
+
+    ctx.shadowBlur = 0;
+    requestAnimationFrame(drawParticles);
 }
 
-animateSnow();
+resizeCanvas();
+createParticles();
+drawParticles();
 
-window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+window.addEventListener("resize",()=>{
+    resizeCanvas();
+    createParticles();
 });
 
-// mở telegram (app + fallback web)
-function openTelegram() {
-    window.location.href = "tg://resolve?domain=trumfakelagios";
+// ===== POPUP =====
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+// ===== DOWNLOAD =====
+function download(url) {
+    document.getElementById("loading").style.display = "flex";
 
     setTimeout(() => {
-        window.open("https://t.me/studiomodall", "_blank");
+        window.open(url, "_blank", "noopener,noreferrer");
+        document.getElementById("loading").style.display = "none";
+    }, 300);
+}
+
+// ===== TEXT TO SPEECH (TÙY CHỌN) =====
+function speak(text) {
+    if(!text) return;
+    const msg = new SpeechSynthesisUtterance();
+    msg.text = text;
+    msg.lang = "vi-VN";
+    msg.rate = 1;
+    msg.pitch = 1;
+    speechSynthesis.speak(msg);
+}
+
+// ===== MỞ TELEGRAM =====
+function openTelegram() {
+    window.location.href = "tg://resolve?domain=ThanhKhang1372009";
+    setTimeout(() => {
+        window.open("https://t.me/ThanhKhang1372009", "_blank");
     }, 500);
 }
 
-// tự hiện popup khi vào web
-window.addEventListener("load", function(){ document.getElementById("popup").style.display="flex";});
-
+// ===== SỰ KIỆN LOAD (GỘP VÀO 1 CHỖ) =====
+window.addEventListener("load", function() {
+    // Hiện popup sau 0.8s
+    setTimeout(() => {
+        document.getElementById("popup").style.display = "flex";
+    }, 800);
+    
+    // Text-to-speech (nếu muốn)
+    // speak("Chào mừng đến với Studio Mod VIP");
+});
 </script>
 
 </body>
