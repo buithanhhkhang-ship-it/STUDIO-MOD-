@@ -1,218 +1,764 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Gấu ModZ</title>
+<title>STUDIO MOD VIP</title>
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+#popup {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.6);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
 }
 
-body{
-background:#111218;
-font-family:Arial,sans-serif;
-color:white;
+.popup-box {
+    width: 340px;
+    background:#f3f4f6;
+    border-radius:20px;
+    overflow:hidden;
+    animation: fadeIn 0.3s ease;
 }
 
-a{
-text-decoration:none;
-color:white;
+.popup-header {
+    padding:15px;
+    text-align:center;
+    font-weight:bold;
+    color:#1e3a8a;
+    position:relative;
+    border-bottom:1px solid #ddd;
 }
 
-.profile{
-padding:45px 20px 25px;
-text-align:center;
+.popup-header h2 {
+    margin:0;
 }
 
-.avatar{
-width:150px;
-height:150px;
-border-radius:50%;
-object-fit:cover;
-border:4px solid #ff6a00;
-box-shadow:
-0 0 10px #ff6a00,
-0 0 25px #ff6a00,
-0 0 45px rgba(255,106,0,.7);
+.close {
+    position:absolute;
+    right:15px;
+    top:10px;
+    font-size:22px;
+    cursor:pointer;
+    color:#999;
 }
 
-.profile h1{
-margin-top:20px;
-font-size:44px;
-font-weight:900;
-text-transform:uppercase;
+.popup-content {
+    padding:20px;
+    text-align:center;
+    color:#333;
+    font-size:15px;
 }
 
-.profile p{
-margin-top:8px;
-color:#cfcfcf;
-font-size:18px;
+.popup-content .link {
+    color:#2563eb;
+    font-weight:bold;
+    text-decoration:none;
 }
 
-.mod-grid{
-
-display:grid;
-
-grid-template-columns:repeat(2,1fr);
-
-gap:16px;
-
-padding:18px;
-
+.popup-content .join {
+    color:#2563eb;
+    font-weight:bold;
+    font-size:18px;
+    text-decoration:none;
 }
 
-.mod-card{
-
-background:#1b1f28;
-
-border-radius:18px;
-
-padding:12px;
-
-box-shadow:0 5px 15px rgba(0,0,0,.35);
-
+.popup-footer {
+    display:flex;
+    gap:10px;
+    padding:15px;
 }
 
-.mod-card img{
-
-width:100%;
-
-aspect-ratio:16/9;
-
-object-fit:cover;
-
-border-radius:12px;
-
-display:block;
-
+.btn-gray {
+    flex:1;
+    background:#e5e7eb;
+    border:none;
+    padding:12px;
+    border-radius:12px;
+    font-weight:bold;
 }
 
-.mod-card h3{
-
-margin:12px 0;
-
-font-size:18px;
-
-text-align:center;
-
-line-height:1.4;
-
+.btn-dark {
+    flex:1;
+    background:#0f172a;
+    color:#fff;
+    border:none;
+    padding:12px;
+    border-radius:12px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.buttons{
-
-display:flex;
-
-gap:8px;
-
+@keyframes fadeIn {
+    from {opacity:0; transform:scale(0.8);}
+    to {opacity:1; transform:scale(1);}
 }
 
-.btn{
-
-flex:1;
-
-padding:9px;
-
-text-align:center;
-
-font-size:13px;
-
-font-weight:bold;
-
-border-radius:8px;
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-.th{
-
-background:#00b84f;
-
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #050505;
+    z-index: -2;
 }
 
-.max{
-
-background:#e53935;
-
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0.2), rgba(0,0,0,0.9));
+    z-index: -1;
 }
 
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.55);
+    z-index: -1;
+}
+
+body {
+    color: #fff;
+}
+
+/* HEADER */
+.header {
+    background: linear-gradient(90deg, #1e3a8a, #312e81);
+    padding: 10px;
+    box-shadow: 0 0 20px #000;
+    position: relative;
+}
+
+.header h1 {
+    color: #facc15;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* chữ nhỏ dưới header */
+.header p {
+    margin: 0px 0 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.5px;
+    transition: 0.3s;
+}
+
+.header p:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* ===== NÚT TRÒN GÓC PHẢI (THÊM MỚI) ===== */
+.avatar-upload {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.avatar-btn {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 0 12px rgba(0,0,0,0.6);
+    transition: 0.3s;
+}
+
+.avatar-btn:hover {
+    transform: scale(1.1);
+}
+
+.avatar-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* CARDS */
+.cards {
+    display: flex;
+    gap: 15px;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1 1 calc(33.33% - 15px);
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.02);
+}
+
+.icon {
+    width: 120px;
+    height: 200px;
+    border-radius: 20px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.icon img {
+    width: 100%;
+}
+
+.card h3 {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.btn {
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+
+    color: #111;
+
+    /* nền trắng bóng */
+    background: linear-gradient(145deg, #ffffff, #e5e7eb);
+    
+    /* hiệu ứng kính */
+    backdrop-filter: blur(5px);
+
+    /* đổ bóng nhẹ */
+    box-shadow: 
+        0 4px 15px rgba(255,255,255,0.3),
+        inset 0 2px 5px rgba(255,255,255,0.8);
+
+    transition: 0.3s;
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255,255,255,0.6);
+    transform: skewX(-25deg);
+}
+
+.btn:hover::after {
+    left: 120%;
+    transition: 0.6s;
+}
+
+.btn:hover {
+    transform: scale(1.07);
+    box-shadow: 
+        0 8px 25px rgba(255,255,255,0.6),
+        inset 0 2px 8px rgba(255,255,255,1);
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+
+/* LOADING */
+#loading {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#000000cc;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    color:#fff;
+    z-index:9999;
+}
+
+.loader {
+    width:60px;
+    height:60px;
+    border:6px solid rgba(255,255,255,0.2);
+    border-top:6px solid #fff;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    box-shadow: 0 0 15px #fff;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* SUPPORT */
+.support {
+    padding: 20px;
+}
+
+.support h2 {
+    color: #60a5fa;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.support p {
+    font-size: 20px;
+    color: #ccc;
+    margin: 15px 0;
+}
+
+.support .link {
+    color: #38bdf8;
+    font-weight: bold;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: #aaa;
+    border-top: 1px solid #333;
+}
+
+.credit {
+    text-align: center;
+    color: #38bdf8;
+    font-weight: bold;
+    padding-bottom: 30px;
+}
 </style>
-
 </head>
 
 <body>
 
-<div class="profile">
+<div id="popup">
+  <div class="popup-box">
+    
+    <div class="popup-header">
+      <h2>THÔNG BÁO</h2>
+      <span class="close" onclick="closePopup()">×</span>
+    </div>
 
-<img class="avatar"
-src="https://sf-static.upanhlaylink.com/img/image_20260717fbbed04ced040a0b38ab6755fa63d94f.jpg">
+    <div class="popup-content">
+      <p>
+       WEBSITE: MOD SKIN FF IOS VIP <br>
+        CHUYÊN CUNG CẤP MOD SKIN FREE FIRE MIỄN PHÍ - VÀ AN TOÀN<br> 
+<p> <br>
+        ĐẶT MOD SKIN LIÊN HỆ TELEGRAM 👇  
+      </p>
 
-<h1>Gấu ModZ</h1>
+      <!-- LINK ADMIN -->
+      <p>
+        <a href="t.me/ThanhKhang1372009" class="link">ADMIN</a>
+      </p>
 
-<p>SHARE MOD SKIN VIP PRO</p>
+      <p></p>
 
+      <!-- JOIN CHANNEL -->
+      <p>
+        <a href="https://t.me/studiomodall" class="join">JOIN CHANNEL</a>
+      </p>
+    </div>
+
+    <div class="popup-footer">
+      <button class="btn-gray">ẨN 1 GIỜ</button>
+      <button class="btn-dark" onclick="closePopup()">ĐÓNG</button>
+    </div>
+
+  </div>
 </div>
 
-<div class="mod-grid">
+  <canvas id="bg-canvas"></canvas>
+<div class="bg-overlay"></div>
 
-<!-- MOD 1 -->
-<div class="mod-card">
+<div class="header">
+    <h1>𝙈𝙊𝘿 𝙎𝙆𝙄𝙉 𝙁𝙁 𝙄𝙊𝙎</h1>
+    <p>ᴛᴇʟᴇɢʀᴀᴍ @ThanhKhang1372009</p>
 
-<img src="https://sf-static.upanhlaylink.com/img/image_20260717fbbed04ced040a0b38ab6755fa63d94f.jpg">
+    <!-- 🔥 NÚT TRÒN THÊM MỚI -->
+    <div class="avatar-upload">
+        <div class="avatar-btn" onclick="openApp()">
+            <img src="https://sf-static.upanhlaylink.com/img/image_20260722121dab72bff1621aa9a9a5ac4d7907ea.jpg">
+        </div>
+    </div>
+</div>
 
-<h3>MOD SKIN VIP V1</h3>
+<div class="cards">
 
-<div class="buttons">
-<a href="LINK_FFTH_1" target="_blank" class="btn th">🟢 FFTH</a>
-<a href="LINK_FFMAX_1" target="_blank" class="btn max">🔴 FFMAX</a>
+<script>
+// HIỆN POPUP KHI VÀO WEB
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        document.getElementById("popup").style.display = "flex";
+    }, 800);
+});
+
+// ĐÓNG POPUP
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+// ===== TEXT TO SPEECH (GIỮ NGUYÊN) =====
+function speak(text) {
+    const msg = new SpeechSynthesisUtterance();
+    msg.text = text;
+    msg.lang = "vi-VN";
+    msg.rate = 1;
+    msg.pitch = 1;
+    speechSynthesis.speak(msg);
+}
+
+window.onload = function() {
+    speak("");
+};
+
+// ===== DOWNLOAD (GIỮ NGUYÊN) =====
+function download(url) {
+    document.getElementById("loading").style.display = "flex";
+
+    speak("");
+
+    setTimeout(() => { window.location.href = url; }, 300);
+    setTimeout(() => { window.location.replace(url); }, 800);
+}
+
+// ===== MỞ APP / LINK (THÊM MỚI) =====
+function openApp() {
+    const url = "https://drive.google.com/file/d/1QPXYb3jNvIgFZOmBOkLB31Lw-nMg67cJ/view?usp=drivesdk";
+    window.location.href = url;
+}
+</script>
+
+<!-- CARD 1 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/free/2026-04-11-c638fd8b-aa7a-40c2-a90a-ad9e8fb4b0cf.jpg"></div>
+    <h3>ALOK</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/8bb8kpkeceogfbv/MOD+VIP+IOS+.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 2 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/free/2026-04-11-c0445b54-f5ee-4dc7-bba3-8cbc61f58370.jpg"></div>
+    <h3>ALOK</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/pvskq8is2a7c0fa/MOD+VIP+IOS+++++++.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 3 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/free/2026-04-11-d09a55d3-e753-4f52-ba71-f4db5aed6d76.jpg"></div>
+    <h3>ALOK</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/cfgq8bng695f7v4/MOD+SKIN+VIP+IOS.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 4 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/free/2026-04-11-990b812a-13bb-4843-be2f-0f27f6d5e35f.jpg"></div>
+    <h3>ALOK</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/mxh2r6iivcslzua/MOD+VIP+IOS+.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 5 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-925f8abe-8a91-4066-8ec9-197f17f621bf.jpg"></div>
+    <h3>ALOK</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/sme66ylqgguk17y/MOD+VIP+IOS+.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 6 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/free/2026-04-11-02669507-7df2-4cb7-957f-db8087725385.jpg"></div>
+        <h3>ALOK</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/dno9x8vqh4zyzxh/MOD+VIP+IOS.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 7 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/free/2026-04-11-0f165fc3-6aa4-4650-af11-43207faf0b7a.jpg"></div>
+    <h3>ALOK</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/wktexbc96q9djzh/MOD+VIP+IOS+.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 8 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-ce7c330f-dc98-428b-b5e5-dc82308ae101.jpg"></div>
+    <h3>ALOK</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/e7qsbospv79mar9/Duy+Pháp.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 9 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-399753e4-3e5c-4a1d-96eb-363c7b8f03f9.jpg"></div>
+    <h3>ALOK</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/qkiu80fq4nh69ep/KEN_MOD_Z_V48_AO_LEVI_QUAN_NGU_FF_THUONG_IOS.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 10 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-cc39d0a0-4bb9-4951-b820-a77ca1953464.jpg"></div>
+    <h3>ALOK</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/8pu2bqfk1h77cjv/mod+skin+by+@Daury+Modec.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 11 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-be2fb759-1374-465e-b773-2e07c02357a2.png"></div>
+    <h3>ALOK</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/sqk8sgnr2zpier2/Duy+Pháp.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 12 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-5468fb63-5c83-41ad-91a8-40e541ec8670.jpg"></div>
+    <h3>ALOK</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/juow636fnmh4zc6/-MOD+VIP+IOS-+.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 13 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-6a02f500-80fa-4dd5-bcb4-22ca0ce89b26.png"></div>
+    <h3>ALOK</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/rz44ln93a9pk69z/MOD+SKIN+RUOK+FF+IOS+FFTH.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 14 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-5b78197c-0e81-4bcc-b631-af5df280e1e7.png"></div>
+    <h3>ALOK</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/ll7ml4iuif48obn/KEN_MOD_Z_V17_ALOK_MU_TIEU_TIEN_FF_THUONG_IOS.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 15 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-2accbd5b-35d6-4777-bf0c-669918c866b8.png"></div>
+    <h3>IGNIS</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/pp9my7krkcu9uc7/KEN_MOD_Z_OB53_V4_IGNIS_AO_BRAZIL_NHAT_QUYEN_FF_THUONG_IOS.zip/fil?dkey=r87cldwozfs&r=373')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 16 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-11-1f0640fd-f9d9-4c76-99e5-d8ff4f5d2140.png"></div>
+    <h3>IGNIS</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/01zbkyemsszc5gx/KEN_MOD_Z_OB53_V4_IGNIS_AO_ARGENTINA_NHAT_QUYEN_FF_THUONG_IOS.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 17 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-12-de349047-3185-4ac5-bd0d-0fde8b29a78a.png"></div>
+    <h3>IGNIS</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/99332zr6uk6d5qv/SAKURATEXTURAS.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 18 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-12-59872603-e543-4d14-a8ef-092d7f0192c4.png"></div>
+    <h3>ALOK</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/qggdjvstrt5w7w3/gia+minh.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 19 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-12-04e313e3-1b2d-4ec8-9e94-af90b23ce6f2.png"></div>
+    <h3>ALOK</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/mgwxxcpmr6tjz78/bộ+4.zip/file?dkey=m1xalvln2tg&r=545')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 20 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-12-c89ef076-b19b-4af0-a872-b28bb0327b68.png"></div>
+    <h3>ALOK</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/0xw3bhtxknb6lt6/bộ+1.zip/file?dkey=8yvizd535zl&r=353')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 21 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-12-99983034-8019-46bf-a26c-1472071c5ffd.jpg"></div>
+    <h3>AWM [ Phong Xà ]</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/dvcz5l5pgbew2co/Awm+hoả+băng+px+by+@chip_crack.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 22 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-12-72ca27ee-64e9-4d4b-a12b-3a8d5f735b6d.jpg"></div>
+    <h3>M1887 [ Phong Xà ]</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/xk47ljm1w383tri/SHOT7+IOS+.zip/file?dkey=tkn5cnd1aee&r=967')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 23 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-13-a3382c10-6638-4be3-8508-2e2633464a8a.png"></div>
+    <h3>ALOK</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/axc8qa42c91qf1f/KEN_MOD_Z_OB53_V5_ALOK_AO_NGU_BA_SAN_FF_THUONG_IOS.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 24 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-13-55fc836b-811b-4a9d-8c33-71a87f961764.png"></div>
+    <h3>SANTINO</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/kgpxzbuzxkqy0wa/KEN_MOD_Z_OB53_V5_SANTINO_AO_NGU_BA_SAN_FF_THUONG_IOS.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 25 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-13-b251b3c9-6489-48a2-9309-16bb328efef1.png"></div>
+    <h3>ALOK + IGNIS</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/v3salehp1drav33/NHẤT+QUYỀN.zip/file')">TẢI NGAY</div>
+</div>
+
+<!-- CARD 26 -->
+<div class="card">
+    <div class="icon"><img src="https://cdn.phototourl.com/member/2026-04-13-86f8306b-b719-4c66-a970-55382ab4e483.png"></div>
+    <h3>ALOK + IGNIS</h3>
+    <div class="btn" onclick="download('https://www.mediafire.com/file/igb3eiqpr4eoaqn/KÍNH+ĐÌNH+QUYỀN.zip/file')">TẢI NGAY</div>
 </div>
 
 </div>
-
-<!-- MOD 2 -->
-<div class="mod-card">
-
-<img src="https://sf-static.upanhlaylink.com/img/image_20260717fbbed04ced040a0b38ab6755fa63d94f.jpg">
-
-<h3>MOD SKIN VIP V2</h3>
-
-<div class="buttons">
-<a href="LINK_FFTH_2" target="_blank" class="btn th">🟢 FFTH</a>
-<a href="LINK_FFMAX_2" target="_blank" class="btn max">🔴 FFMAX</a>
+<!-- LOADING -->
+<div id="loading">
+    <div class="loader"></div>
+    <p></p>
 </div>
 
+<div class="support">
+    <h2>Hỗ Trợ</h2>
+    <p>Điều khoản sử dụng</p>
+    <p>Chính sách bảo mật</p>
+    <p>DMCA Disclaimer</p>
+    <p>Liên hệ quảng cáo</p>
+
+
+    <a href="https://t.me/studiomodall" target="_blank" class="link">
+        𝘾𝙝𝙖𝙣𝙣𝙚𝙡 𝘼𝙙𝙢𝙞𝙣
+    </a>
+
+
+    <h2>Liên Hệ</h2>
+    <p>Địa Chỉ : Sao Hoả</p>
+
+    <p class="link">
+        ADMIN : 
+@ThanhKhang1372009 <br>
+       
+    </p>
 </div>
 
-<!-- MOD 3 -->
-<div class="mod-card">
-
-<img src="https://sf-static.upanhlaylink.com/img/image_20260717fbbed04ced040a0b38ab6755fa63d94f.jpg">
-
-<h3>MOD SKIN VIP V3</h3>
-
-<div class="buttons">
-<a href="LINK_FFTH_3" target="_blank" class="btn th">🟢 FFTH</a>
-<a href="LINK_FFMAX_3" target="_blank" class="btn max">🔴 FFMAX</a>
+<div class="footer">
+    <b>© 2026 STUDIO MOD VIP</b>
 </div>
 
+<div class="credit">
+    WEBSITE MAKE BY : STUDIO MOD VIP
 </div>
 
-<!-- MOD 4 -->
-<div class="mod-card">
+<script>
+const canvas = document.getElementById("bg-canvas");
+const ctx = canvas.getContext("2d");
 
-<img src="https://sf-static.upanhlaylink.com/img/image_20260717fbbed04ced040a0b38ab6755fa63d94f.jpg">
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-<h3>MOD SKIN VIP V4</h3>
+let snowflakes = [];
 
-<div class="buttons">
-<a href="LINK_FFTH_4" target="_blank" class="btn th">🟢 FFTH</a>
-<a href="LINK_FFMAX_4" target="_blank" class="btn max">🔴 FFMAX</a>
-</div>
+// tạo tuyết
+for (let i = 0; i < 150; i++) {
+    snowflakes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 3 + 1,
+        speed: Math.random() * 2 + 1
+    });
+}
 
-</div>
+function drawSnow() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+
+    for (let i = 0; i < snowflakes.length; i++) {
+        let f = snowflakes[i];
+        ctx.moveTo(f.x, f.y);
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, true);
+    }
+
+    ctx.fill();
+    moveSnow();
+}
+
+function moveSnow() {
+    for (let i = 0; i < snowflakes.length; i++) {
+        let f = snowflakes[i];
+
+        // rơi thẳng xuống
+        f.y += f.speed;
+
+        // nếu rơi hết màn thì reset lại trên
+        if (f.y > canvas.height) {
+            snowflakes[i] = {
+                x: Math.random() * canvas.width,
+                y: 0,
+                r: f.r,
+                speed: f.speed
+            };
+        }
+    }
+}
+
+function animateSnow() {
+    drawSnow();
+    requestAnimationFrame(animateSnow);
+}
+
+animateSnow();
+
+window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+// mở telegram (app + fallback web)
+function openTelegram() {
+    window.location.href = "tg://resolve?domain=trumfakelagios";
+
+    setTimeout(() => {
+        window.open("https://t.me/studiomodall", "_blank");
+    }, 500);
+}
+
+// tự hiện popup khi vào web
+window.addEventListener("load", function(){ document.getElementById("popup").style.display="flex";});
+
+</script>
+
+</body>
+</html>
