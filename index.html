@@ -453,19 +453,25 @@ body{
 
 <body>
 
-    <!-- ===== POPUP QUẢNG CÁO ===== -->
-    <div id="adPopup">
-        <div class="ad-box">
-            <span class="close" onclick="closeAd()">❌</span>
-            <img src="https://sf-static.upanhlaylink.com/img/image_20260724792ac72c1a7b9c5f914beda1e51320c7.jpg" class="ad-img" alt="Quảng cáo">
+<!-- ===== POPUP QUẢNG CÁO ===== -->
+<div id="popup">
+    <div class="popup-box">
+        <div class="popup-header">
             <h2>📢 THÔNG BÁO</h2>
-            <p>🔰 WEBSITE MOD ANDROID VIP</p>
-            <a href="https://buithanhhkhang-ship-it.github.io/Solite-X-STUDIO-MOD-/#" target="_blank">🔰 WEBSITE MOD ANDROID VIP</a>
+            <span class="close" onclick="closePopup()">✕</span>
+        </div>
+        <div class="popup-content">
+            <img src="https://sf-static.upanhlaylink.com/img/image_20260724792ac72c1a7b9c5f914beda1e51320c7.jpg" alt="Quảng cáo" style="width:100%;border-radius:12px;margin-bottom:15px;">
+            <p style="font-size:16px;font-weight:bold;color:#00e5ff;">🔰 WEBSITE MOD ANDROID VIP</p>
+            <a href="https://buithanhhkhang-ship-it.github.io/Solite-X-STUDIO-MOD-/#" target="_blank" class="join">🔰 WEBSITE MOD ANDROID VIP</a>
+        </div>
+        <div class="popup-footer">
+            <button class="btn-gray" onclick="closePopup()">Đóng</button>
+            <button class="btn-dark" onclick="closePopup(); window.open('https://buithanhhkhang-ship-it.github.io/Solite-X-STUDIO-MOD-/','_blank')">Truy cập</button>
         </div>
     </div>
-
-    <div class="container">
-
+</div>
+    
 <!-- ===== BACKGROUND ===== -->
 <canvas id="bg-canvas"></canvas>
 <div class="bg-overlay"></div>
